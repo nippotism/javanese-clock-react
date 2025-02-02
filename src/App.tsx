@@ -153,8 +153,8 @@ function App() {
       .then((data) => {
         
         const Data = data.data
-        console.log(Data);
-        console.log(formattedToday);
+        // console.log(Data);
+        // console.log(formattedToday);
         
         const dataToday = Data.filter((item: any) => parseGregorian(item.date.gregorian.date) === formattedToday)[0];
         
