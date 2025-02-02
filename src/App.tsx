@@ -7,17 +7,6 @@ import FullScreenToggle from './components/ui/fullscreen-toogle';
 import { DrawerDemo } from './components/ui/drawer-sholat';
 import { DateTime } from 'luxon';
 
-
-
-interface PrayerTimings {
-  Fajr: string;
-  Sunrise: string;
-  Dhuhr: string;
-  Asr: string;
-  Maghrib: string;
-  Isha: string;
-}
-
 export const menet: { [key: string]: string } = {
   '00': '',
   '0': '',
@@ -144,9 +133,6 @@ function App() {
       Isha: "00:00",
     },
   ]);
-
-  const [count, setCount] = useState(0);
-
 
   const now = new Date();
   let tahun = now.getFullYear();
