@@ -12,7 +12,6 @@ import {Button} from "@heroui/button";
 import { DateTime } from "luxon";
 import FlipClockCountdown from '@leenguyen/react-flip-clock-countdown';
 import '@leenguyen/react-flip-clock-countdown/dist/index.css';
-import { form } from "@heroui/theme";
 
 interface PrayerTimings {
   Fajr: string;
