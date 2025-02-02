@@ -1,7 +1,10 @@
-
+import { useState } from "react";
 import {Button } from "@heroui/button";
+import { FiMaximize, FiMinimize } from "react-icons/fi";
 
 function FullScreenToggle() {
+
+    const [fullscreen, setFullscreen] = useState(false);
   const handleFullScreen = () => {
     //toggle fullscreen
     if (!document.fullscreenElement) {
@@ -9,8 +12,9 @@ function FullScreenToggle() {
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
-        }
-    } 
+      }
+    }
+    setFullscreen(!fullscreen); 
   };
 
   return (
@@ -20,9 +24,7 @@ function FullScreenToggle() {
         isIconOnly
         className='hover:-translate-y-1 transition-all duration-300'
         >
-        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 4h4m0 0v4m0-4-5 5M8 20H4m0 0v-4m0 4 5-5"/>
-        </svg>
+        {fullscreen ? <FiMinimize size={20} /> : <FiMaximize  size={20}/>}
         </Button>
     </div>
   );

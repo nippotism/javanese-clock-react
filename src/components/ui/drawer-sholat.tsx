@@ -12,6 +12,7 @@ import {Button} from "@heroui/button";
 import { DateTime } from "luxon";
 import FlipClockCountdown from '@leenguyen/react-flip-clock-countdown';
 import '@leenguyen/react-flip-clock-countdown/dist/index.css';
+import { form } from "@heroui/theme";
 
 interface PrayerTimings {
   Fajr: string;
@@ -47,19 +48,12 @@ export function DrawerDemo() {
         Isha: "",
     });
 
-    const now = DateTime.now();
+    const now = DateTime.now().setZone('Asia/Jakarta');
     const nowDate = now.toLocaleString(DateTime.DATE_FULL);
-    const formattedToday = new Date().toISOString().split('T')[0];
-
-
-    const nowjs = new Date();
-    let tahun = nowjs.getFullYear();
-    let bulan = nowjs.getMonth() + 1; 
-
 
       useEffect(() => {
 
-        let api = `//api.aladhan.com/v1/calendarByCity/${tahun}/${bulan}?city=semarang&country=Indonesia&method=20`;
+        let api = `//api.aladhan.com/v1/timingsByCity/${now.toFormat('dd-MM-yyyy')}?city=Semarang&country=ID&method=20&timezonestring=UTC%2B7`;
     
     
         fetch(api)
@@ -68,18 +62,14 @@ export function DrawerDemo() {
           })
           .then((data) => {
             
-            const Data = data.data
-            // console.log(Data);
-            
-            const dataToday = Data.filter((item: any) => parseGregorian(item.date.gregorian.date) === formattedToday)[0];
-            
-            // console.log("Data Today");
+            const dataToday = data.data
+                      
             setPrayerTimings({
-              Fajr: `${formattedToday}T${dataToday.timings.Fajr.replace(" (WIB)", "")}`,
-              Dhuhr: `${formattedToday}T${dataToday.timings.Dhuhr.replace(" (WIB)", "")}`,
-              Asr: `${formattedToday}T${dataToday.timings.Asr.replace(" (WIB)", "")}`,
-              Maghrib: `${formattedToday}T${dataToday.timings.Maghrib.replace(" (WIB)", "")}`,
-              Isha: `${formattedToday}T${dataToday.timings.Isha.replace(" (WIB)", "")}`,
+              Fajr: `${now.toFormat('yyyy-MM-dd')}T${dataToday.timings.Fajr.replace(" (WIB)", "")}`,
+              Dhuhr: `${now.toFormat('yyyy-MM-dd')}T${dataToday.timings.Dhuhr.replace(" (WIB)", "")}`,
+              Asr: `${now.toFormat('yyyy-MM-dd')}T${dataToday.timings.Asr.replace(" (WIB)", "")}`,
+              Maghrib: `${now.toFormat('yyyy-MM-dd')}T${dataToday.timings.Maghrib.replace(" (WIB)", "")}`,
+              Isha: `${now.toFormat('yyyy-MM-dd')}T${dataToday.timings.Isha.replace(" (WIB)", "")}`,
             });
     
           });
@@ -87,8 +77,8 @@ export function DrawerDemo() {
 
 
       useEffect(() => {
-        // console.log("Prayer Timings");
-        // console.log(prayerTimings);
+        console.log("Data Drawer");
+        console.log(prayerTimings);
 
       }, [prayerTimings]);
 
@@ -132,6 +122,7 @@ export function DrawerDemo() {
             )}
           </div>
           <DrawerFooter>
+            <DrawerDescription className="text-xs"><span className=" font-bold">Source :</span> KEMENAG (Kementerian Agama Republik Indonesia)</DrawerDescription>
           </DrawerFooter>
         </div>
       </DrawerContent>
