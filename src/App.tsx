@@ -218,12 +218,12 @@ function App() {
     }
   }
 
-  console.log('nextPrayerName');
-  console.log(nextPrayerName);
-  console.log('distanceToNextPrayer');
-  console.log(distanceToNextPrayer);
-  console.log('previousPrayerName');
-  console.log(previousPrayerName);
+  // console.log('nextPrayerName');
+  // console.log(nextPrayerName);
+  // console.log('distanceToNextPrayer');
+  // console.log(distanceToNextPrayer);
+  // console.log('previousPrayerName');
+  // console.log(previousPrayerName);
 
   if (distanceFromPreviousPrayer < 20) {
     setSholatReminder(`Wayahe solat ${previousPrayerName}.`);
@@ -233,10 +233,10 @@ function App() {
     const menitt = distanceToNextPrayer % 60;
     const menitper10 = Math.floor(menitt / 10) * 10;
 
-    console.log('jamm');
-    console.log(jamm);
-    console.log('menitt');
-    console.log(menitt);
+    // console.log('jamm');
+    // console.log(jamm);
+    // console.log('menitt');
+    // console.log(menitt);
 
     if (menitt < 10) {
       if (jamm < 1) {
@@ -253,7 +253,7 @@ function App() {
 
 
 
-  }, [dataSholat]);
+  }, [dataSholat,time]);
 
   useEffect(() => {
     setDesc(updateSchedule(time.getHours(), Math.floor(time.getMinutes() / 5) * 5));

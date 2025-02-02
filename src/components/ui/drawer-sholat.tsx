@@ -69,11 +69,11 @@ export function DrawerDemo() {
           .then((data) => {
             
             const Data = data.data
-            console.log(Data);
+            // console.log(Data);
             
             const dataToday = Data.filter((item: any) => parseGregorian(item.date.gregorian.date) === formattedToday)[0];
             
-            console.log("Data Today");
+            // console.log("Data Today");
             setPrayerTimings({
               Fajr: `${formattedToday}T${dataToday.timings.Fajr.replace(" (WIB)", "")}`,
               Dhuhr: `${formattedToday}T${dataToday.timings.Dhuhr.replace(" (WIB)", "")}`,
@@ -87,8 +87,8 @@ export function DrawerDemo() {
 
 
       useEffect(() => {
-        console.log("Prayer Timings");
-        console.log(prayerTimings);
+        // console.log("Prayer Timings");
+        // console.log(prayerTimings);
 
       }, [prayerTimings]);
 
